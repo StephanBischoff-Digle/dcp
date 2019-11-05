@@ -1,8 +1,16 @@
 #pragma once
 
-#include <string>
+#include <unordered_set>
+#include <vector>
 
-
-std::string get_message() {
-    return std::string{"Hello World!"};
+template <typename T>
+bool sums_to_k(const T& k, const std::vector<T>& vec) {
+    std::unordered_set<T> seen;
+    for (const auto num : vec) {
+        if (seen.find(k - num) != seen.end()) {
+            return true;
+        }
+        seen.insert(num);
+    }
+    return false;
 }
