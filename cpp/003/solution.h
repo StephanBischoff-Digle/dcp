@@ -2,8 +2,10 @@
 
 #include <iostream>
 
+#include <functional>
 #include <memory>
 #include <string>
+#include <sstream>
 
 
 struct Node {
@@ -11,23 +13,54 @@ struct Node {
     std::shared_ptr<Node> left;
     std::shared_ptr<Node> right;
 
-    friend std::ostream& operator<<(std::ostream& out, const Node& v) {
-        out << "[val: " << v.val << ", left: " << v.left << ", right: " << v.right << "]";
-        return out;
+    Node(std::string val)
+        : val{val}, left{}, right{} {}
+    Node(std::string val, std::string l_val, std::string r_val)
+        : val{val} {
+        left = std::shared_ptr<Node>(new Node{l_val});
+        right = std::shared_ptr<Node>(new Node{r_val});
+    }
+
+    void add_left(std::string val) {
+        left = std::shared_ptr<Node>(new Node{val});
+    }
+    void add_right(std::string val) {
+        right = std::shared_ptr<Node>(new Node{val});
     }
 };
 
 
+//     a
+//  b     c
+//
+// a.v b.v # # c.v # #
+std::string serialize(const Node& root) {
+    std::function<std::string(const std::shared_ptr<Node>& sub)> recursive;
+    recursive = [&recursive](const std::shared_ptr<Node>& sub) -> std::string {
+        if (!sub) {
+            return std::string{"#"};
+        } else {
+            std::stringstream ss;
+            ss << sub->val << " "
+               << recursive(sub->left) << " "
+               << recursive(sub->right);
+            return ss.str();
+        }
+    };
 
+    std::stringstream ss;
+    ss << root.val << " ";
+    if (!root.left) {
+        ss << "#";
+    } else {
+        ss << recursive(root.left);
+    }
 
-std::string serialize() {
-    return std::string{""};
-}
+    if (!root.right) {
+        ss << " #";
+    } else {
+        ss << " " << recursive(root.right);
+    }
 
-Node deserialize(const std::string s) {
-    Node ret;
-    ret.val = std::string{s};
-    ret.left = nullptr;
-    ret.right = nullptr;
-    return ret;
+    return ss.str();
 }
