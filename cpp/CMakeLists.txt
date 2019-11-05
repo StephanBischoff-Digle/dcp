@@ -16,3 +16,4 @@ enable_testing()
 
 # List of days
 add_subdirectory(001)
+add_subdirectory(002)
