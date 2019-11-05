@@ -5,7 +5,7 @@ add_library(${PROJECT_NAME}
     solution.h
 )
 
-target_link_libraries(${PROJECT_NAME} gtest)
+target_link_libraries(${PROJECT_NAME})
 target_include_directories(${PROJECT_NAME} PUBLIC .)
 set_target_properties(${PROJECT_NAME} PROPERTIES
     CXX_STANDARD 17
