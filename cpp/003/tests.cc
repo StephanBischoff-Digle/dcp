@@ -5,7 +5,7 @@
 #include "gtest/gtest.h"
 
 
-TEST(Day003Test, serialize_root) {
+TEST(d003, serialize_root) {
     Node n{"v"};
     std::string solution = 
         "v # #";
@@ -13,18 +13,21 @@ TEST(Day003Test, serialize_root) {
     ASSERT_EQ(serialize(n), solution);
 }
 
-TEST(Day003Test, serialize_full_depth2) {
-    Node n{"v", "l", "r"};
+TEST(d003, serialize_full_depth2) {
+    Node n{"v",
+        new Node{"l"},
+        new Node{"r"}};
+
     std::string solution = 
         "v l # # r # #";
 
     ASSERT_EQ(serialize(n), solution);
 }
 
-TEST(Day003Test, serialize_full_left) {
-    Node n{"v"};
-    n.add_left("l");
-    n.left->add_left("ll");
+TEST(d003, serialize_full_left) {
+    Node n{"v",
+        new Node{"l",
+            new Node{"ll"}}};
 
     std::string solution = 
         "v l ll # # # #";
@@ -32,10 +35,13 @@ TEST(Day003Test, serialize_full_left) {
     ASSERT_EQ(serialize(n), solution);
 }
 
-TEST(Day003Test, serialize_full_right) {
-    Node n{"v"};
-    n.add_right("r");
-    n.right->add_right("rr");
+TEST(d003, serialize_full_right) {
+    Node n{"v",
+        nullptr,
+        new Node{"r",
+            nullptr,
+            new Node{"rr"}}};
+
     std::string solution = 
         "v # r # rr # #";
 
@@ -43,20 +49,22 @@ TEST(Day003Test, serialize_full_right) {
 }
 
 
-TEST(Day003Test, serialize_full_depth3) {
-    Node n{"v", "l", "r"};
-    n.left->add_left("ll");
-    n.left->left->add_left("lll");
-    n.left->left->add_right("llr");
-    n.left->add_right("lr");
-    n.left->right->add_left("lrl");
-    n.left->right->add_right("lrr");
-    n.right->add_left("rl");
-    n.right->left->add_left("rll");
-    n.right->left->add_right("rlr");
-    n.right->add_right("rr");
-    n.right->right->add_left("rrl");
-    n.right->right->add_right("rrr");
+TEST(d003, serialize_full_depth3) {
+    Node n{"v",
+        new Node{"l",
+            new Node{"ll",
+                new Node{"lll"},
+                new Node{"llr"}},
+            new Node{"lr",
+                new Node{"lrl"},
+                new Node{"lrr"}}},
+        new Node{"r",
+            new Node{"rl",
+                new Node{"rll"},
+                new Node{"rlr"}},
+            new Node{"rr",
+                new Node{"rrl"},
+                new Node{"rrr"}}}};
 
     std::string solution = 
         "v l ll lll # # llr # # lr lrl # # lrr # # "

@@ -13,13 +13,10 @@ struct Node {
     std::shared_ptr<Node> left;
     std::shared_ptr<Node> right;
 
-    Node(std::string val)
-        : val{val}, left{}, right{} {}
-    Node(std::string val, std::string l_val, std::string r_val)
-        : val{val} {
-        left = std::shared_ptr<Node>(new Node{l_val});
-        right = std::shared_ptr<Node>(new Node{r_val});
-    }
+    Node(std::string val, Node* left = nullptr, Node* right = nullptr)
+        : val{val},
+          left{left},
+          right{right} {}
 
     void add_left(std::string val) {
         left = std::shared_ptr<Node>(new Node{val});
@@ -33,7 +30,7 @@ struct Node {
 //     a
 //  b     c
 //
-// a.v b.v # # c.v # #
+// a b # # c # #
 std::string serialize(const Node& root) {
     std::function<std::string(const std::shared_ptr<Node>& sub)> recursive;
     recursive = [&recursive](const std::shared_ptr<Node>& sub) -> std::string {
