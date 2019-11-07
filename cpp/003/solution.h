@@ -3,9 +3,13 @@
 #include <iostream>
 
 #include <functional>
+#include <iterator>
 #include <memory>
 #include <string>
 #include <sstream>
+#include <vector>
+
+#include "dbg.h"
 
 
 struct Node {
@@ -60,4 +64,27 @@ std::string serialize(const Node& root) {
     }
 
     return ss.str();
+}
+
+
+Node deserialize(const std::string s) {
+    std::istringstream is(s);
+    std::vector<std::string> tokens{
+        std::istream_iterator<std::string>(is),
+        std::istream_iterator<std::string>()};
+
+    dbg(tokens);
+
+    std::size_t i = 0;
+    std::function<Node *()> constructor;
+    constructor = [&tokens, &constructor, &i]() -> Node * {
+        i++;
+        if (tokens[i] == "#") {
+            return nullptr;
+        } else {
+            return new Node{tokens[i], constructor(), constructor()};
+        }
+    };
+
+    return Node{tokens[0], constructor(), constructor()};
 }

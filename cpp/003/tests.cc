@@ -73,6 +73,30 @@ TEST(d003, serialize_full_depth3) {
     ASSERT_EQ(serialize(n), solution);
 }
 
-TEST(Day003Test, deserialize) {
-    ASSERT_EQ(true, false);
+
+////////////////////////////////////////////////////////////
+TEST(d003, equivalence_shallow) {
+    std::string s{"v # #"};
+
+    ASSERT_EQ(serialize(deserialize(s)), s);
+}
+
+TEST(d003, equivalence_left) {
+    std::string s{"v l ll # # # #"};
+
+    ASSERT_EQ(serialize(deserialize(s)), s);
+}
+
+TEST(d003, equivalence_right) {
+    std::string s{"v # r # rr # #"};
+
+    ASSERT_EQ(serialize(deserialize(s)), s);
+}
+
+TEST(d003, equivalence_depth) {
+    std::string s =
+        "v l ll lll # # llr # # lr lrl # # lrr # # "
+        "r rl rll # # rlr # # rr rrl # # rrr # #";
+
+    ASSERT_EQ(serialize(deserialize(s)), s);
 }
