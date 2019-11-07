@@ -15,7 +15,7 @@ include(GoogleTest)
 enable_testing()
 
 # Use dbg macro
-add_subdirectory(dbg)
+# add_subdirectory(dbg)
 
 # List of days
 add_subdirectory(001)
