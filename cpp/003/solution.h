@@ -9,9 +9,6 @@
 #include <sstream>
 #include <vector>
 
-#include "dbg.h"
-
-
 struct Node {
     std::string val;
     std::shared_ptr<Node> left;
@@ -72,8 +69,6 @@ Node deserialize(const std::string s) {
     std::vector<std::string> tokens{
         std::istream_iterator<std::string>(is),
         std::istream_iterator<std::string>()};
-
-    dbg(tokens);
 
     std::size_t i = 0;
     std::function<Node *()> constructor;

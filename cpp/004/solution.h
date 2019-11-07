@@ -2,12 +2,7 @@
 
 #include <vector>
 
-#include "dbg.h"
-
 int find_lowest_missing(std::vector<int>& input) {
-
-    dbg(input);
-
     for (std::size_t i = 0; i < input.size();) {
         auto current = input[i];
 
@@ -23,11 +18,7 @@ int find_lowest_missing(std::vector<int>& input) {
         } else {
             i++;
         }
-        dbg(input);
     }
-
-
-    dbg(input);
 
     for (std::size_t i = 0; i <= input.size(); i++) {
         if (i + 1 != static_cast<std::size_t>(input[i])) {
