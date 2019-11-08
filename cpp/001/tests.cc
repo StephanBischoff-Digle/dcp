@@ -1,10 +1,8 @@
-#include "solution.h"
-
-#include "gtest/gtest.h"
-
 #include <cstdint>
 #include <vector>
 
+#include "gtest/gtest.h"
+#include "solution.h"
 
 TEST(d001, find) {
     int64_t k = 17;
