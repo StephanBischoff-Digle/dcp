@@ -17,9 +17,5 @@ enable_testing()
 # Use dbg macro
 # add_subdirectory(dbg)
 
-# List of days
-add_subdirectory(001)
-add_subdirectory(002)
-add_subdirectory(003)
-add_subdirectory(004)
-add_subdirectory(005)
+# solutions and tests
+add_subdirectory(solutions)
