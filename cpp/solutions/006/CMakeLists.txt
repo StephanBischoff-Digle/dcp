@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.12)
-project(Day005)
+project(Day006)
 
 add_library(${PROJECT_NAME}
     solution.h
+    solution.cc
 )
 
 target_link_libraries(${PROJECT_NAME})
