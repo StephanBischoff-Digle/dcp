@@ -26,4 +26,21 @@ TEST(d006, normal) {
     }
 }
 
+TEST(d006, bounds_check_size) {
+    xor_linked_list lst;
 
+    ASSERT_EQ(lst.size(), 0);
+
+    lst.add(1);
+    ASSERT_EQ(lst.size(), 1);
+}
+
+TEST(d006, bounds_check_return) {
+    xor_linked_list lst;
+
+    ASSERT_EQ(lst.get(0), std::nullopt);
+
+    lst.add(1);
+
+    ASSERT_NE(lst.get(0), std::nullopt);
+}
