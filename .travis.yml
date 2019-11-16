@@ -3,6 +3,13 @@ compiler: clang
 branches:
     only: master
 
+addons:
+    apt:
+        sources:
+            - ubuntu-toolchain-r-test
+        packages:
+            - libstdc++-7-dev
+
 before_script:
     - cd cpp
     - mkdir build
