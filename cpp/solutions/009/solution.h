@@ -41,3 +41,25 @@ T dynamic_highest_non_adjacent(const std::vector<T>& list) {
     
     return cache.back();
 }
+
+template <typename T>
+T highest_non_adjacent(const std::vector<T>& list) {
+    if (list.size() <= 2) {
+        T highest = 0;
+        for (const T& i : list) {
+            highest = std::max(highest, i);
+        }
+        return highest;
+    }
+
+    T a = std::max(0, list[0]);
+    T b = std::max(a, list[1]);
+
+    std::for_each(list.begin() + 2, list.end(), [&a, &b](const T& i) {
+        T tmp = b;
+        b = std::max(b, a + i);
+        a = tmp;
+    });
+    
+    return std::max(a, b);
+}
