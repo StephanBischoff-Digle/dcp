@@ -50,5 +50,3 @@ public:
     std::shared_ptr<btree<T>> right;
     T value;
 };
-
-void init() {}
