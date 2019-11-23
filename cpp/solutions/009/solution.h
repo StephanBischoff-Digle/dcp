@@ -1,8 +1,7 @@
 #pragma once
 
-#include <vector>
 #include <algorithm>
-
+#include <vector>
 
 template <typename T>
 T recursive_highest_non_adjacent(
@@ -13,12 +12,9 @@ T recursive_highest_non_adjacent(
         return 0;
     }
 
-    return std::max(
-            recursive_highest_non_adjacent<T>(start + 1, end),
-            *start + recursive_highest_non_adjacent<T>(start + 2, end));
-
+    return std::max(recursive_highest_non_adjacent<T>(start + 1, end),
+                    *start + recursive_highest_non_adjacent<T>(start + 2, end));
 }
-
 
 template <typename T>
 T dynamic_highest_non_adjacent(const std::vector<T>& list) {
@@ -38,7 +34,7 @@ T dynamic_highest_non_adjacent(const std::vector<T>& list) {
         T tmp = list[i];
         cache[i] = std::max(tmp + cache[i - 2], cache[i - 1]);
     }
-    
+
     return cache.back();
 }
 
@@ -60,6 +56,6 @@ T highest_non_adjacent(const std::vector<T>& list) {
         b = std::max(b, a + i);
         a = tmp;
     });
-    
+
     return std::max(a, b);
 }

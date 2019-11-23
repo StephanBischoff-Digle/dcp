@@ -1,7 +1,7 @@
+#include <vector>
+
 #include "gtest/gtest.h"
 #include "solution.h"
-
-#include <vector>
 
 TEST(d009, recursive_readme_1) {
     std::vector<int> v = {2, 4, 6, 2, 5};
@@ -38,5 +38,3 @@ TEST(d009, readme_2) {
 
     ASSERT_EQ(dynamic_highest_non_adjacent<int>(v), 10);
 }
-
-

@@ -6,5 +6,3 @@ TEST(d007, readme) {
 
     ASSERT_EQ(recursive_decodings(msg), 3);
 }
-
-
