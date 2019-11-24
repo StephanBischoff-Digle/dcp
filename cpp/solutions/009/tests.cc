@@ -30,11 +30,11 @@ TEST(d009, dynamic_readme_2) {
 TEST(d009, readme_1) {
     std::vector<int> v = {2, 4, 6, 2, 5};
 
-    ASSERT_EQ(dynamic_highest_non_adjacent(v), 13);
+    ASSERT_EQ(highest_non_adjacent(v), 13);
 }
 
 TEST(d009, readme_2) {
     std::vector<int> v = {5, 1, 1, 5};
 
-    ASSERT_EQ(dynamic_highest_non_adjacent<int>(v), 10);
+    ASSERT_EQ(highest_non_adjacent<int>(v), 10);
 }
