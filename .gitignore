@@ -32,4 +32,6 @@
 *.app
 
 # Build directory
+cpp/Debug/
+cpp/compile_commands.json
 cpp/build
