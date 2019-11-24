@@ -32,6 +32,10 @@
 *.app
 
 # Build directory
+cpp/build
+
+# NVIM working stuff
 cpp/Debug/
 cpp/compile_commands.json
-cpp/build
+.ccls-cache/
+.clangd/
