@@ -3,6 +3,12 @@
 #include <algorithm>
 #include <vector>
 
+/**
+ * @brief Naive recursive solution for the problem
+ * @param start The start of the problem list
+ * @param end The end of the problem list
+ * @return The highest sum of non-adjacent elements in the list.
+ */
 template <typename T>
 T recursive_highest_non_adjacent(
         const typename std::vector<T>::const_iterator& start,
@@ -16,6 +22,14 @@ T recursive_highest_non_adjacent(
                     *start + recursive_highest_non_adjacent<T>(start + 2, end));
 }
 
+
+/**
+ * @brief Dynamic solution for the problem.
+ * @param list A constant reference to the problem list.
+ * @return The highest sum of non-adjacent elements in the list.
+ *
+ * This function caches the partial solutions. Instead of recursion it utilizes iteration.
+ */
 template <typename T>
 T dynamic_highest_non_adjacent(const std::vector<T>& list) {
     if (list.size() <= 2) {
@@ -38,6 +52,16 @@ T dynamic_highest_non_adjacent(const std::vector<T>& list) {
     return cache.back();
 }
 
+
+/**
+ * @brief O(n), constant space solution to the problem.
+ * @param list A constant reference to the problem list.
+ * @return The highest sum of non-adjacent elements in the list.
+ *
+ * This function only uses the last two elements of the cache,
+ * such that it can just store them in temporary variables.
+ * The function iterates over the problem list once.
+ */
 template <typename T>
 T highest_non_adjacent(const std::vector<T>& list) {
     if (list.size() <= 2) {
